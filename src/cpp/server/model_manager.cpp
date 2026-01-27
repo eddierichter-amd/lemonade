@@ -271,9 +271,9 @@ std::map<std::string, ModelInfo> ModelManager::discover_extra_models() const {
     }
     
     std::string search_dir = extra_models_dir_;
-    
+
     std::cout << "[ModelManager] Scanning for GGUF models in: " << search_dir << std::endl;
-    
+
     // Configuration for discovered models (single source of truth)
     static constexpr const char* EXTRA_MODEL_PREFIX = "extra.";
     static constexpr const char* EXTRA_MODEL_RECIPE = "llamacpp";
@@ -320,7 +320,7 @@ std::map<std::string, ModelInfo> ModelManager::discover_extra_models() const {
         std::cerr << "[ModelManager] Error scanning directory " << search_dir << ": " << e.what() << std::endl;
         return discovered;
     }
-    
+
     // Process standalone files (single-file models)
     for (const auto& gguf_path : standalone_files) {
         std::string filename = gguf_path.filename().string();
@@ -333,7 +333,7 @@ std::map<std::string, ModelInfo> ModelManager::discover_extra_models() const {
         info.checkpoint = gguf_path.string();
         info.resolved_path = gguf_path.string();
         info.type = ModelType::LLM;
-        
+
         // Calculate size in GB
         try {
             uintmax_t file_size = fs::file_size(gguf_path);
@@ -341,7 +341,7 @@ std::map<std::string, ModelInfo> ModelManager::discover_extra_models() const {
         } catch (...) {
             info.size = 0.0;
         }
-        
+
         discovered[model_name] = info;
     }
     
@@ -395,14 +395,14 @@ std::map<std::string, ModelInfo> ModelManager::discover_extra_models() const {
             info.mmproj = mmproj_file;
             info.labels.push_back("vision");
         }
-        
+
         info.type = get_model_type_from_labels(info.labels);
-        
+
         discovered[model_name] = info;
     }
-    
+
     std::cout << "[ModelManager] Discovered " << discovered.size() << " models from extra directory" << std::endl;
-    
+
     return discovered;
 }
 

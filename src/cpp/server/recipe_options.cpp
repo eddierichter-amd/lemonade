@@ -9,6 +9,7 @@ static const json DEFAULTS = {
     {"ctx_size", 4096},
     {"llamacpp_backend", "vulkan"},
     {"llamacpp_args", ""},
+    {"rpc", ""},
     // Image generation defaults (for sd-cpp recipe)
     {"steps", 20},
     {"cfg_scale", 7.0},
@@ -35,6 +36,12 @@ static const json CLI_OPTIONS = {
         {"type_name", "ARGS"},
         {"envname", "LEMONADE_LLAMACPP_ARGS"},
         {"help", "Custom arguments to pass to llama-server (must not conflict with managed args)"}
+    }},
+    {"--rpc", {
+        {"option_name", "rpc"},
+        {"type_name", "ADDRESS"},
+        {"envname", "LEMONADE_RPC"},
+        {"help", "RPC server address (ip-address:port) to pass to llama-server"}
     }},
     // Image generation options (for sd-cpp recipe)
     {"--steps", {
@@ -65,7 +72,7 @@ static const json CLI_OPTIONS = {
 
 static std::vector<std::string> get_keys_for_recipe(const std::string& recipe) {
     if (recipe == "llamacpp") {
-        return {"ctx_size", "llamacpp_backend", "llamacpp_args"};
+        return {"ctx_size", "llamacpp_backend", "llamacpp_args", "rpc"};
     } else if (recipe == "oga-npu" || recipe == "oga-hybrid" || recipe == "oga-cpu" || recipe == "ryzenai" || recipe == "flm") {
         return {"ctx_size"};
     } else if (recipe == "sd-cpp") {
