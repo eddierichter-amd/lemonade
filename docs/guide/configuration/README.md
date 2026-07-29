@@ -43,16 +43,22 @@ Values set in the user's `config.json` always take precedence over these seeded 
   },
   "auto_check_model_updates": true,
   "cloud_providers": [],
-  "config_version": 2,
-  "ctx_size": -1,
+  "config_version": 1,
+  "ctx_size": 4096,
   "disable_model_filtering": false,
   "enable_dgpu_gtt": false,
+  "extensor": {
+    "backend": "auto",
+    "extensor_model_path": "",
+    "extensor_preset": "demo",
+    "rocm_bin": "builtin"
+  },
   "extra_models_dir": "",
   "flm": {
     "args": "",
     "prefer_system": false
   },
-  "global_timeout": 600,
+  "global_timeout": 300,
   "host": "localhost",
   "inhibit_suspend": true,
   "kokoro": {

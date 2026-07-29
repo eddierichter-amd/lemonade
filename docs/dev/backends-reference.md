@@ -10,6 +10,7 @@ the generator instead. Prose outside the markers is preserved. -->
 | Recipe | Name | Selectable backend | Uses ctx_size | Backends |
 |--------|------|--------------------|---------------|----------|
 | `acestep` | ACE-Step | yes | no | cuda, rocm, vulkan |
+| `extensor` | EXTENSOR ROCm (experimental) | yes | no | rocm |
 | `flm` | FastFlowLM NPU | no | yes | npu |
 | `kokoro` | Kokoro | no | no | cpu, metal |
 | `llamacpp` | Llama.cpp GPU | yes | yes | cpu, cuda, metal, rocm, system, vulkan |
@@ -32,6 +33,7 @@ the generator instead. Prose outside the markers is preserved. -->
 | `acestep` | rocm | linux, windows | amd_gpu (gfx103X, gfx110X, gfx1150, gfx1151, gfx1152, gfx120X) |
 | `acestep` | cuda | linux, windows | nvidia_gpu |
 | `acestep` | vulkan | linux, windows | amd_gpu; cpu (x86_64); nvidia_gpu |
+| `extensor` | rocm | linux | amd_gpu (gfx1151) |
 | `flm` | npu | linux, windows | amd_npu (XDNA2) |
 | `kokoro` | cpu | linux, windows | cpu (x86_64) |
 | `kokoro` | metal | macos | metal |
@@ -85,6 +87,14 @@ the generator instead. Prose outside the markers is preserved. -->
 | Option | CLI flag | Type | Default | Description |
 |--------|----------|------|---------|-------------|
 | `acestep_backend` | `--acestep` | BACKEND | "" | ACE-Step backend to use |
+
+#### `extensor` — EXTENSOR ROCm (experimental)
+
+| Option | CLI flag | Type | Default | Description |
+|--------|----------|------|---------|-------------|
+| `extensor_backend` | `--extensor` | BACKEND | "" | EXTENSOR backend to use |
+| `extensor_model_path` | `--extensor-model-path` | PATH | "" | Path to an EXTENSOR model image |
+| `extensor_preset` | `--extensor-preset` | PRESET | demo | EXTENSOR runtime preset: exact, demo, or fast |
 
 #### `flm` — FastFlowLM NPU
 
@@ -179,6 +189,12 @@ the generator instead. Prose outside the markers is preserved. -->
 | `Lite Collection` |  | — |
 | `RPG-HaloTales-V1` | 39.77 | — |
 | `Ultra Collection` |  | — |
+
+#### `extensor` — EXTENSOR ROCm (experimental) (1 models)
+
+| Model | Size (GB) | Labels |
+|-------|-----------|--------|
+| `deepseek-v4` | 153.2 | reasoning, tool-calling |
 
 #### `kokoro` — Kokoro (1 models)
 

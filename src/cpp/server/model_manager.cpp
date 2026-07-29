@@ -2489,14 +2489,19 @@ std::map<std::string, ModelInfo> ModelManager::filter_models_by_backend(
                            "Detected operating system: " + os_version + ".";
         }
 
-        // Filter out models that are too large for system RAM
-        // Heuristic: if model size > 80% of system RAM, filter it out
-        if (!filter_out && !user_controlled_model && system_ram_gb > 0.0 && info.size > 0.0) {
-            if (info.size > max_model_size_gb) {
+        // Filter out models that are too large for system RAM. Backends that
+        // stream weights from storage can declare a smaller runtime footprint.
+        const bool skip_memory_filter =
+            info.extra<bool>("skip_memory_filter", false);
+        if (!filter_out && !user_controlled_model && !skip_memory_filter &&
+            system_ram_gb > 0.0 && info.size > 0.0) {
+            const double memory_required_gb =
+                info.extra<double>("memory_required_gb", info.size);
+            if (memory_required_gb > max_model_size_gb) {
                 filter_out = true;
                 std::ostringstream oss;
                 oss << std::fixed << std::setprecision(1);
-                oss << "This model requires approximately " << info.size << " GB of memory, "
+                oss << "This model requires approximately " << memory_required_gb << " GB of memory, "
                     << "but your system only has " << system_ram_gb << " GB of RAM. "
                     << "Models larger than " << max_model_size_gb << " GB (80% of system RAM) are filtered out.";
                 filter_reason = oss.str();

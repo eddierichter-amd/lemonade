@@ -5,6 +5,7 @@ const RAW_BASE = 'https://raw.githubusercontent.com/lemonade-sdk/lemonade';
 /* BEGIN GENERATED: models-js-recipes */
 const RECIPE_PRIORITY = [
   'acestep',
+  'extensor',
   'flm',
   'kokoro',
   'llamacpp',
@@ -26,6 +27,7 @@ const RECIPE_DISPLAY_NAMES = {
   flm: 'FastFlowLM NPU',
   'ryzenai-llm': 'Ryzen AI SW NPU',
   vllm: 'vLLM ROCm (experimental)',
+  extensor: 'EXTENSOR ROCm',
   thinksound: 'ThinkSound',
   acestep: 'ACE-Step',
   onnxruntime: 'ONNX Runtime',
