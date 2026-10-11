@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-06T07:52:49.840276+00:00",
-  "run_id": "36832882515",
-  "run_url": "https://github.com/eddierichter-amd/lemonade/actions/runs/36832882515",
+  "generated_at": "2026-10-11T07:53:11.701330+00:00",
+  "run_id": "37279575765",
+  "run_url": "https://github.com/eddierichter-amd/lemonade/actions/runs/37279575765",
   "repo": "eddierichter-amd/lemonade",
   "repo_url": "https://github.com/eddierichter-amd/lemonade",
   "actions_url": "https://github.com/eddierichter-amd/lemonade/actions/workflows/benchmark-regression.yml",
-  "commit": "40827a33c995ce1f70370d82b9939f2b0f1e13a0",
+  "commit": "7dc09e21a2655f0644963dd6cf857bac2d8ba0af",
   "lemonade_version": null,
   "experimental_forks": [
     "llamacpp-hrx"
